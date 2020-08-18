@@ -15,3 +15,5 @@
 ### PORT=3100
 ### }
 ### Step 4)Test all requests using Postman or any API testing tools
+
+# PS - I have inserted dummy data in the database for querying
