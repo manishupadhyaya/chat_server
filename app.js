@@ -67,17 +67,20 @@ app.get('/chatlogs/:userId', (req, res, next) => {
         limit,
         start
     } = req.query;
-
     if (start == null) start = 0;
     if (limit == null) limit = 10;
 
     Chats.find({
         userId
-    }, (err, docs) => {
-        res.json(docs);
-    }).sort({
+    })
+    .skip(parseInt(start))
+    .limit(parseInt(limit))
+    .sort({
         timeStamp: -1
-    }).limit(limit).skip(start);
+    })
+    .exec((err, docs) => {
+        res.json(docs);
+    });
 });
 
 app.delete('/chatlogs/:userId', (req, res, next) => {
