@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const {
     v4: uuidv4
 } = require('uuid')
@@ -28,7 +29,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
+app.use(cors())
 
 app.post('/chatlogs/:userId', (req, res, next) => {
     let {
@@ -53,8 +54,7 @@ app.post('/chatlogs/:userId', (req, res, next) => {
             res.send("Error saving data to database")
         } else {
             res.json({
-                success: true,
-                chatLog
+                message:"Message Id Generated is:" + messageId
             });
             // res.send("Data saved successfully in database")
         }
@@ -63,6 +63,7 @@ app.post('/chatlogs/:userId', (req, res, next) => {
 
 app.get('/chatlogs/:userId', (req, res, next) => {
     let userId = req.params.userId
+    console.log(userId)
     let {
         limit,
         start
@@ -89,7 +90,7 @@ app.delete('/chatlogs/:userId', (req, res, next) => {
         userId
     }).remove().exec();
     res.json({
-        success: true
+        message: "Messages have been deleted"
     });
 })
 
@@ -104,11 +105,11 @@ app.delete('/chatlogs/:userId/:messageId', (req, res, next) => {
         messageId
     }, (err) => {
         if (err) res.json({
-            error: err.message
+            message: err.message
         })
         else {
             res.json({
-                success: true
+                message: "Message has been deleted"
             });
         }
     })
