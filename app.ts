@@ -38,8 +38,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-type TReqParams = { userId: string };
-type TReqBody = { isSent: boolean, message: string, timeStamp: number }
+// type TReqParams = { userId: string };
+// type TReqBody = { isSent: boolean, message: string, timeStamp: number }
 
 app.post('/chatlogs/:userId', (req: Request, res: Response) => {
 

@@ -5,7 +5,8 @@
 ### NodeJS and Npm must be installed in the system
 
 ### Step 1)Clone the repository into your system
-### Step 2)Run npm install
+### Step 2)Run 'npm install' in terminal without quotes
+### Step 3)Run 'npm install -g typescript' in terminal without quotes
 ### Step 3)
 ### create a .env file pasting the following data in the file without {}-
 ### {
@@ -14,4 +15,5 @@
 ### }
 ### Step 4)Test all requests using Postman or any API testing tools
 
-# PS - I have inserted dummy data in the database for querying
+
+## PS - I have inserted dummy data in the database for querying

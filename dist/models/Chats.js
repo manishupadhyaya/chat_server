@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMessageByUser = exports.Chats = exports.ChatSchema = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
+var mongoose_1 = __importDefault(require("mongoose"));
 exports.ChatSchema = new mongoose_1.default.Schema({
     userId: {
         type: String,
@@ -28,11 +28,13 @@ exports.ChatSchema = new mongoose_1.default.Schema({
     }
 });
 exports.Chats = mongoose_1.default.model('Chats', exports.ChatSchema);
-exports.deleteMessageByUser = ({ messageId, userId }, callback) => {
-    exports.Chats.deleteOne({ messageId, userId }, (err) => {
+exports.deleteMessageByUser = function (_a, callback) {
+    var messageId = _a.messageId, userId = _a.userId;
+    exports.Chats.deleteOne({ messageId: messageId, userId: userId }, function (err) {
         if (err)
             callback(err);
         else
             callback(null);
     });
 };
+//# sourceMappingURL=Chats.js.map
