@@ -10,6 +10,7 @@ import express, {
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
 import cors from 'cors'
+
 import {
     v4 as uuidv4
 } from 'uuid'
@@ -22,7 +23,7 @@ import {
 // mongoose.Promise = global.Promise;
 
 const app: Application = express();
-
+app.use(cors())
 mongoose.connect(
     `${process.env.MONGO_URI}`, {
     useNewUrlParser: true,
@@ -35,7 +36,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(cors())
+
 
 type TReqParams = { userId: string };
 type TReqBody = { isSent: boolean, message: string, timeStamp: number }
