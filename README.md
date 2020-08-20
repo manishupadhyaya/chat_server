@@ -1,4 +1,4 @@
-## Chat Server Challenge using NodeJS as backend
+## Chat Server Challenge using NodeJS as backend using TypeScript
 
 ### Steps to run the localhost Server
 
