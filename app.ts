@@ -20,8 +20,7 @@ import {
     Chats,
     deleteMessageByUser
 } from './models/Chats'
-
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 const app: Application = express();
 app.use(cors())
