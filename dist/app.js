@@ -49,6 +49,7 @@ app.use(body_parser_1.default.urlencoded({
 }));
 app.use(body_parser_1.default.json());
 app.post('/chatlogs/:userId', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let { isSent, message, timeStamp } = req.body;
     let { userId } = req.params;
     let messageId = uuid_1.v4();
@@ -73,6 +74,7 @@ app.post('/chatlogs/:userId', (req, res) => {
     });
 });
 app.get('/chatlogs/:userId', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.params);
     let userId;
     let limit;
@@ -97,6 +99,7 @@ app.get('/chatlogs/:userId', (req, res) => {
     });
 });
 app.delete('/chatlogs/:userId', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let userId;
     userId = req.params.userId;
     Chats_1.Chats.find({
@@ -107,6 +110,7 @@ app.delete('/chatlogs/:userId', (req, res, next) => {
     });
 });
 app.delete('/chatlogs/:userId/:messageId', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let userId;
     let messageId;
     userId = req.params.userId;
