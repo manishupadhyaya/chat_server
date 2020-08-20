@@ -33,6 +33,7 @@ const uuid_1 = require("uuid");
 const Chats_1 = require("./models/Chats");
 // mongoose.Promise = global.Promise;
 const app = express_1.default();
+app.use(cors_1.default());
 mongoose_1.default.connect(`${process.env.MONGO_URI}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -42,7 +43,6 @@ app.use(body_parser_1.default.urlencoded({
     extended: true
 }));
 app.use(body_parser_1.default.json());
-app.use(cors_1.default());
 app.post('/chatlogs/:userId', (req, res) => {
     let { isSent, message, timeStamp } = req.body;
     let { userId } = req.params;
