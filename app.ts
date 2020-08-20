@@ -5,11 +5,12 @@ dotenv.config()
 import express, {
     Application,
     Request,
-    Response
+    Response,
+    NextFunction
 } from 'express'
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
-import cors from 'cors'
+// import cors from 'cors'
 
 import {
     v4 as uuidv4
@@ -23,7 +24,12 @@ import {
 // mongoose.Promise = global.Promise;
 
 const app: Application = express();
-app.use(cors())
+// app.use(cors())
+app.use(function (req: Request, res: Response, next: NextFunction) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 mongoose.connect(
     `${process.env.MONGO_URI}`, {
     useNewUrlParser: true,

@@ -28,12 +28,17 @@ dotenv.config();
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
-const cors_1 = __importDefault(require("cors"));
+// import cors from 'cors'
 const uuid_1 = require("uuid");
 const Chats_1 = require("./models/Chats");
 // mongoose.Promise = global.Promise;
 const app = express_1.default();
-app.use(cors_1.default());
+// app.use(cors())
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 mongoose_1.default.connect(`${process.env.MONGO_URI}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
