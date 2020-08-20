@@ -1,0 +1,38 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteMessageByUser = exports.Chats = exports.ChatSchema = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
+exports.ChatSchema = new mongoose_1.default.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+    messageId: {
+        type: String,
+        required: true
+    },
+    timeStamp: {
+        type: Number,
+        required: true
+    },
+    isSent: {
+        type: Boolean,
+        required: true
+    }
+});
+exports.Chats = mongoose_1.default.model('Chats', exports.ChatSchema);
+exports.deleteMessageByUser = ({ messageId, userId }, callback) => {
+    exports.Chats.deleteOne({ messageId, userId }, (err) => {
+        if (err)
+            callback(err);
+        else
+            callback(null);
+    });
+};
