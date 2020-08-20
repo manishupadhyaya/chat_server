@@ -24,12 +24,7 @@ import {
 // mongoose.Promise = global.Promise;
 
 const app: Application = express();
-// app.use(cors())
-app.use(function (req: Request, res: Response, next: NextFunction) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(cors())
 mongoose.connect(
     `${process.env.MONGO_URI}`, {
     useNewUrlParser: true,
@@ -48,7 +43,7 @@ type TReqParams = { userId: string };
 type TReqBody = { isSent: boolean, message: string, timeStamp: number }
 
 app.post('/chatlogs/:userId', (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+
     let { isSent, message, timeStamp } = req.body;
     let { userId } = req.params;
     let messageId = uuidv4();
@@ -75,7 +70,7 @@ app.post('/chatlogs/:userId', (req: Request, res: Response) => {
 })
 
 app.get('/chatlogs/:userId', (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+
     console.log(req.params)
     let userId: string;
     let limit: number;
@@ -100,7 +95,7 @@ app.get('/chatlogs/:userId', (req: Request, res: Response) => {
 });
 
 app.delete('/chatlogs/:userId', (req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+
     let userId: string;
     userId = req.params.userId
     Chats.find({
@@ -112,7 +107,7 @@ app.delete('/chatlogs/:userId', (req, res, next) => {
 })
 
 app.delete('/chatlogs/:userId/:messageId', (req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+
     let userId: string;
     let messageId: string;
     userId = req.params.userId
