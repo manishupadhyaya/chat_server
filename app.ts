@@ -74,6 +74,7 @@ app.post('/chatlogs/:userId', (req: Request<TReqParams, any, TReqBody>, res: Res
 })
 
 app.get('/chatlogs/:userId', (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.params)
     let userId: string;
     let limit: number;
