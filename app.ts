@@ -38,14 +38,18 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-// type TReqParams = { userId: string };
-// type TReqBody = { isSent: boolean, message: string, timeStamp: number }
-
 app.post('/chatlogs/:userId', (req: Request, res: Response) => {
 
-    let { isSent, message, timeStamp } = req.body;
-    let { userId } = req.params;
-    let messageId = uuidv4();
+    let isSent: boolean;
+    let message: string;
+    let timeStamp: string;
+    let userId: string;
+    isSent = req.body.isSent;
+    userId = req.params.userId;
+    message = req.body.message
+    timeStamp = req.body.timeStamp
+    let messageId: string;
+    messageId = uuidv4();
 
     let chatLog = new Chats({
         userId,
@@ -93,7 +97,7 @@ app.get('/chatlogs/:userId', (req: Request, res: Response) => {
         });
 });
 
-app.delete('/chatlogs/:userId', (req, res, next) => {
+app.delete('/chatlogs/:userId', (req: Request, res: Response) => {
 
     let userId: string;
     userId = req.params.userId
@@ -105,7 +109,7 @@ app.delete('/chatlogs/:userId', (req, res, next) => {
     });
 })
 
-app.delete('/chatlogs/:userId/:messageId', (req, res, next) => {
+app.delete('/chatlogs/:userId/:messageId', (req: Request, res: Response) => {
 
     let userId: string;
     let messageId: string;
