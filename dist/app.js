@@ -73,6 +73,7 @@ app.post('/chatlogs/:userId', (req, res) => {
     });
 });
 app.get('/chatlogs/:userId', (req, res) => {
+    console.log(req.params);
     let userId;
     let limit;
     let start;
