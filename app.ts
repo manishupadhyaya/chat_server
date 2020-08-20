@@ -47,7 +47,8 @@ app.use(bodyParser.json());
 type TReqParams = { userId: string };
 type TReqBody = { isSent: boolean, message: string, timeStamp: number }
 
-app.post('/chatlogs/:userId', (req: Request<TReqParams, any, TReqBody>, res: Response) => {
+app.post('/chatlogs/:userId', (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let { isSent, message, timeStamp } = req.body;
     let { userId } = req.params;
     let messageId = uuidv4();
@@ -99,6 +100,7 @@ app.get('/chatlogs/:userId', (req: Request, res: Response) => {
 });
 
 app.delete('/chatlogs/:userId', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let userId: string;
     userId = req.params.userId
     Chats.find({
@@ -110,6 +112,7 @@ app.delete('/chatlogs/:userId', (req, res, next) => {
 })
 
 app.delete('/chatlogs/:userId/:messageId', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let userId: string;
     let messageId: string;
     userId = req.params.userId
