@@ -13,6 +13,8 @@
 ### MONGOURI=mongodb://manish:mongo123456@ds157818.mlab.com:57818/chatserver
 ### PORT=3100
 ### }
+### Step 5)Run 'npm run build' to build the .js file from .ts files creating a dist directory
+### Step 6)Run 'npm run dev' to start the project in development mode
 ### Step 5)Test all requests using Postman or any API testing tools
 
 
